@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Kopitiam"/>
+<meta name="theme-color" content="#1a0a00"/>
+<title>Kopitiam ☕</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{background:#1a0a00;font-family:'Palatino Linotype','Book Antiqua',Palatino,Georgia,serif;display:flex;justify-content:center;min-height:100vh;}
+#app{width:100%;max-width:480px;min-height:100vh;position:relative;}
+#splash{min-height:100vh;background:#1a0a00;display:flex;flex-direction:column;}
+.splash-btn-wrap{padding:16px 20px;background:linear-gradient(180deg,#1a0a00 60%,transparent);z-index:20;}
+.splash-btn{width:100%;padding:14px 0;background:linear-gradient(135deg,#c8873a,#7b3f10);color:#fdf6ec;border:none;border-radius:14px;font-size:17px;font-weight:bold;cursor:pointer;font-family:inherit;letter-spacing:2px;text-transform:uppercase;box-shadow:0 6px 28px rgba(200,135,58,.45);}
+.splash-btn:active{opacity:.85;}
+.art-panels{display:flex;height:52vh;}
+.art-divider{width:2px;background:linear-gradient(to bottom,transparent,#c8873a 30%,#c8873a 70%,transparent);flex-shrink:0;}
+.art-coffee{flex:1;position:relative;overflow:hidden;background:#2b1506;}
+.art-tea{flex:1;position:relative;overflow:hidden;background:#0f2a10;}
+.art-drink{flex:1;position:relative;overflow:hidden;background:#0a1a2e;}
+.drink-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,#1a3a5c,#0a1a2e 60%,#050a15);}
+.drink-can{position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);}
+.can-body{width:34px;height:54px;background:linear-gradient(135deg,#e8334a,#c0392b);border-radius:5px 5px 4px 4px;position:relative;box-shadow:inset -5px 0 10px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.5);}
+.can-top{width:34px;height:8px;background:linear-gradient(135deg,#c0c0c0,#888);border-radius:3px 3px 0 0;margin-top:-1px;}
+.can-tab{width:10px;height:5px;background:#aaa;border-radius:3px;margin:0 auto;margin-top:-3px;}
+.can-stripe{position:absolute;top:16px;left:0;right:0;height:12px;background:rgba(255,255,255,.15);border-radius:0;}
+.can-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:rgba(255,255,255,.9);font-size:7px;font-weight:bold;letter-spacing:1px;text-align:center;text-shadow:0 1px 3px rgba(0,0,0,.4);}
+.drink-glass{position:absolute;top:50%;left:50%;transform:translate(-50%,10%);}
+.glass-body{width:28px;height:36px;background:linear-gradient(135deg,rgba(255,255,255,.25),rgba(255,255,255,.05));border:1.5px solid rgba(255,255,255,.3);border-top:none;border-radius:0 0 8px 8px;position:relative;overflow:hidden;}
+.glass-liquid{position:absolute;bottom:0;left:0;right:0;height:70%;background:linear-gradient(180deg,rgba(255,200,50,.7),rgba(220,150,30,.9));border-radius:0 0 6px 6px;}
+.glass-ice{position:absolute;top:4px;left:4px;width:8px;height:8px;background:rgba(255,255,255,.8);border-radius:2px;transform:rotate(15deg);}
+.glass-ice2{position:absolute;top:2px;right:5px;width:6px;height:6px;background:rgba(255,255,255,.7);border-radius:2px;transform:rotate(-20deg);}
+.glass-straw{position:absolute;top:-18px;right:6px;width:3px;height:26px;background:linear-gradient(180deg,#ff6b9d,#c84b7a);border-radius:2px;transform:rotate(8deg);}
+.drink-bubbles{position:absolute;bottom:18%;width:100%;display:flex;justify-content:space-around;padding:0 25%;}
+.bubble{border-radius:50%;background:rgba(255,255,255,.15);animation:bubble-rise 3s ease-in-out infinite;}
+.bubble:nth-child(1){width:6px;height:6px;animation-delay:0s;}
+.bubble:nth-child(2){width:4px;height:4px;animation-delay:1s;}
+.bubble:nth-child(3){width:5px;height:5px;animation-delay:2s;}
+@keyframes bubble-rise{0%,100%{transform:translateY(0);opacity:.6;}50%{transform:translateY(-8px);opacity:.2;}}
+.drink-label{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);text-align:center;white-space:nowrap;}
+.drink-label-sub{color:#a8c8e8;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:3px;}
+.drink-label-main{color:#e8f4ff;font-size:22px;font-weight:bold;text-shadow:0 2px 12px rgba(0,0,0,.6);}
+.drink-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,10,20,.05),rgba(5,10,20,.4));}
+.coffee-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,#6b3010,#2b1506 60%,#1a0a00);}
+.tea-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,#1e4a1e,#0f2a10 50%,#050f05);}
+.coffee-steam,.tea-steam{position:absolute;top:12%;left:50%;transform:translateX(-50%);display:flex;gap:8px;}
+.steam-line{width:3px;border-radius:3px;background:linear-gradient(to top,transparent,rgba(253,246,236,.5),transparent);animation:steam 2s ease-in-out infinite;}
+.steam-line:nth-child(1){height:28px;}
+.steam-line:nth-child(2){height:22px;animation-delay:.4s;margin-top:4px;}
+.steam-line:nth-child(3){height:26px;animation-delay:.8s;}
+.tsteam{width:2px;border-radius:2px;background:linear-gradient(to top,transparent,rgba(200,240,200,.6),transparent);animation:steam 2.4s ease-in-out infinite;}
+.tsteam:nth-child(1){height:24px;animation-delay:.2s;}
+.tsteam:nth-child(2){height:20px;animation-delay:.7s;margin-top:3px;}
+.tsteam:nth-child(3){height:22px;animation-delay:1.1s;}
+@keyframes steam{0%,100%{transform:scaleX(1) translateY(0);opacity:.6;}50%{transform:scaleX(1.3) translateY(-4px);opacity:1;}}
+.coffee-cup,.tea-cup{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+.cup-body{width:70px;height:56px;background:linear-gradient(135deg,#f5d9a8,#d4a05a);border-radius:4px 4px 14px 14px;position:relative;box-shadow:inset -6px 0 12px rgba(0,0,0,.2),0 4px 16px rgba(0,0,0,.4);}
+.cup-liquid{position:absolute;top:10px;left:6px;right:6px;height:32px;background:linear-gradient(180deg,#3d1a08,#5c2a10);border-radius:2px 2px 10px 10px;}
+.cup-foam{position:absolute;top:10px;left:6px;right:6px;height:8px;background:radial-gradient(ellipse,#e8c89a 40%,#c8a060);border-radius:4px;}
+.cup-handle{position:absolute;right:-18px;top:12px;width:18px;height:26px;border:5px solid #d4a05a;border-left:none;border-radius:0 14px 14px 0;}
+.cup-saucer{width:90px;height:10px;background:linear-gradient(135deg,#f5d9a8,#c8873a);border-radius:50%;margin-top:2px;margin-left:-10px;box-shadow:0 4px 12px rgba(0,0,0,.3);}
+.tcup-body{width:66px;height:52px;background:linear-gradient(135deg,#e8f5e8,#b8d4b8);border-radius:4px 4px 14px 14px;position:relative;box-shadow:inset -5px 0 10px rgba(0,0,0,.15),0 4px 16px rgba(0,0,0,.4);}
+.tcup-liquid{position:absolute;top:8px;left:6px;right:6px;height:30px;background:linear-gradient(180deg,#8b4513,#c47a3a);border-radius:2px 2px 10px 10px;}
+.tcup-foam{position:absolute;top:8px;left:6px;right:6px;height:6px;background:radial-gradient(ellipse,rgba(255,230,180,.9) 50%,rgba(200,160,80,.6));border-radius:3px;}
+.tcup-handle{position:absolute;right:-16px;top:10px;width:16px;height:24px;border:4px solid #b8d4b8;border-left:none;border-radius:0 12px 12px 0;}
+.tcup-saucer{width:86px;height:9px;background:linear-gradient(135deg,#e0f0e0,#90c490);border-radius:50%;margin-top:2px;margin-left:-10px;box-shadow:0 4px 12px rgba(0,0,0,.3);}
+.coffee-beans,.tea-leaves{position:absolute;bottom:12%;width:100%;display:flex;justify-content:space-around;padding:0 20%;}
+.bean{width:12px;height:18px;background:#3d1a08;border-radius:50%;transform:rotate(20deg);box-shadow:1px 1px 4px rgba(0,0,0,.3);position:relative;}
+.bean::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(90deg);width:1px;height:10px;background:rgba(0,0,0,.3);}
+.bean:nth-child(2){transform:rotate(-15deg);}
+.bean:nth-child(3){transform:rotate(35deg);}
+.leaf{width:14px;height:20px;background:linear-gradient(135deg,#2d6a2d,#1a4a1a);border-radius:50% 0 50% 0;transform:rotate(-20deg);box-shadow:1px 1px 4px rgba(0,0,0,.3);}
+.leaf:nth-child(2){transform:rotate(10deg);background:linear-gradient(135deg,#3a7a3a,#1e5a1e);}
+.leaf:nth-child(3){transform:rotate(-35deg);}
+.coffee-label{position:absolute;bottom:16px;left:14px;}
+.coffee-label-sub,.tea-label-sub{color:#f5d9a8;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:3px;}
+.coffee-label-main{color:#fdf6ec;font-size:26px;font-weight:bold;text-shadow:0 2px 12px rgba(0,0,0,.6);}
+.coffee-label-zh,.tea-label-zh{color:#f5d9a8;font-size:10px;margin-top:2px;letter-spacing:1px;}
+.coffee-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(26,10,0,.1),rgba(26,10,0,.5));}
+.tea-label{position:absolute;bottom:16px;right:14px;text-align:right;}
+.tea-label-sub{color:#a8d8a8;}
+.tea-label-main{color:#e8f5e8;font-size:26px;font-weight:bold;text-shadow:0 2px 12px rgba(0,0,0,.6);}
+.tea-overlay{position:absolute;inset:0;background:linear-gradient(to left,rgba(5,15,5,.1),rgba(5,15,5,.5));}
+.splash-bottom{background:linear-gradient(180deg,#1a0a00,#2d1205);padding:16px 24px 24px;text-align:center;}
+.splash-title{font-size:36px;font-weight:bold;color:#fdf6ec;letter-spacing:3px;text-shadow:0 2px 24px rgba(200,135,58,.4);}
+.splash-sub{color:#c8873a;font-size:11px;letter-spacing:5px;text-transform:uppercase;margin-top:6px;}
+.splash-author{color:#5a3820;font-size:11px;letter-spacing:2px;margin-top:14px;}
+#order-app{display:none;flex-direction:column;min-height:100vh;background:#fdf6ec;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c8873a' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");color:#2d1a05;}
+.app-header{background:linear-gradient(135deg,#7b3f10,#c8873a);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px rgba(123,63,16,.3);}
+.header-back{background:none;border:none;color:#fdf6ec;font-size:22px;cursor:pointer;padding:0;line-height:1;font-family:inherit;}
+.header-title{color:#fdf6ec;font-weight:bold;font-size:20px;font-family:inherit;}
+.header-badge{background:#fdf6ec;color:#7b3f10;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:13px;cursor:pointer;border:2px solid #c8873a;}
+.tabs{display:flex;background:#f5e6ce;border-bottom:2px solid #d4a05a;}
+.tab{flex:1;padding:12px 0;text-align:center;cursor:pointer;font-size:14px;color:#a07040;background:transparent;border:none;border-bottom:3px solid transparent;font-family:inherit;transition:all .2s;}
+.tab.active{font-weight:bold;color:#7b3f10;background:#fdf6ec;border-bottom:3px solid #c8873a;}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px;}
+.menu-card{background:#fff;border:2px solid #e8d0a8;border-radius:12px;padding:14px 12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:all .2s;}
+.menu-card.active{background:linear-gradient(135deg,#7b3f10,#c8873a);border-color:#7b3f10;box-shadow:0 4px 16px rgba(123,63,16,.35);transform:scale(1.03);}
+.card-name{font-weight:bold;font-size:15px;color:#4a2005;margin-bottom:4px;}
+.menu-card.active .card-name{color:#fdf6ec;}
+.card-desc{font-size:11px;color:#a07040;line-height:1.4;}
+.menu-card.active .card-desc{color:#f5d9a8;}
+.customize{background:#fff8ee;border-top:2px solid #e8d0a8;padding:14px 16px 0;}
+.section-label{font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#a07040;margin-bottom:10px;}
+.opt-row{display:flex;gap:8px;margin-bottom:14px;}
+.opt-btn{flex:1;padding:10px 4px;border-radius:10px;border:2px solid #d4a05a;background:#fff;color:#7b3f10;font-size:13px;cursor:pointer;font-family:inherit;text-align:center;line-height:1.5;transition:all .15s;}
+.opt-btn.active{border-color:#7b3f10;background:#7b3f10;color:#fdf6ec;font-weight:bold;}
+.opt-emoji{font-size:22px;display:block;margin-bottom:2px;}
+.mod-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.mod-btn{padding:7px 14px;border-radius:20px;border:2px solid #d4a05a;background:#fff;color:#7b3f10;font-size:13px;cursor:pointer;font-family:inherit;transition:all .15s;}
+.mod-btn.active{border-color:#7b3f10;background:#7b3f10;color:#fdf6ec;font-weight:bold;}
+.panel{background:#fff8ee;border-top:2px solid #e8d0a8;padding:14px 16px 0;}
+.qty-row{display:flex;align-items:center;gap:16px;margin-bottom:14px;}
+.qty-btn{width:34px;height:34px;border-radius:50%;border:2px solid #c8873a;background:#fff;color:#7b3f10;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:bold;font-family:inherit;}
+.qty-num{font-size:20px;font-weight:bold;color:#4a2005;min-width:28px;text-align:center;}
+.add-btn{width:calc(100% - 32px);margin:0 16px 16px;padding:14px 0;background:linear-gradient(135deg,#7b3f10,#c8873a);color:#fdf6ec;border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;font-family:inherit;opacity:.4;transition:opacity .2s;}
+.add-btn.ready{opacity:1;}
+.add-btn:active{opacity:.8;}
+.floating-bar{position:sticky;bottom:0;background:linear-gradient(135deg,#7b3f10,#c8873a);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;box-shadow:0 -4px 16px rgba(123,63,16,.25);}
+.floating-bar span{color:#fdf6ec;font-weight:bold;font-size:14px;}
+#order-view{display:none;flex-direction:column;min-height:100vh;background:#fdf6ec;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c8873a' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");color:#2d1a05;}
+.order-list{padding:16px;}
+.order-item{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:10px;padding:12px 14px;margin-bottom:10px;border:1.5px solid #e8d0a8;box-shadow:0 2px 6px rgba(0,0,0,.05);}
+.order-item-name{font-weight:bold;font-size:15px;color:#4a2005;}
+.order-item-qty{font-size:12px;color:#a07040;margin-top:2px;}
+.remove-btn{background:none;border:none;color:#c0392b;font-size:18px;cursor:pointer;padding:0 4px;}
+.divider{border:none;border-top:2px dashed #d4a05a;margin:12px 0;}
+.table-label{font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#a07040;margin-bottom:8px;}
+.table-input{width:100%;padding:12px 14px;border:2px solid #d4a05a;border-radius:10px;font-size:15px;font-family:inherit;color:#4a2005;background:#fff;margin-bottom:12px;outline:none;}
+.place-btn{width:100%;padding:15px 0;background:linear-gradient(135deg,#1a7b3f,#2ecc71);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;font-family:inherit;}
+.place-btn:active{opacity:.85;}
+.empty-msg{text-align:center;color:#a07040;padding:40px 0;}
+#confirm-view{display:none;flex-direction:column;min-height:100vh;background:#fdf6ec;color:#2d1a05;}
+.confirm-content{text-align:center;padding:40px 24px;}
+.confirm-emoji{font-size:64px;display:block;margin-bottom:16px;}
+.confirm-title{font-size:24px;font-weight:bold;color:#1a7b3f;margin-bottom:8px;}
+.confirm-table{font-size:16px;color:#4a2005;font-weight:bold;margin-bottom:8px;}
+.confirm-items{font-size:14px;color:#7b3f10;line-height:1.9;margin-bottom:24px;}
+.confirm-sub{font-size:13px;color:#a07040;margin-bottom:24px;}
+.new-order-btn{padding:14px 32px;background:linear-gradient(135deg,#7b3f10,#c8873a);color:#fdf6ec;border:none;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer;font-family:inherit;}
+.install-tip{margin:18px 20px 0;padding:12px 14px;background:#fff8ee;border:1.5px dashed #d4a05a;border-radius:12px;font-size:13px;color:#7b3f10;line-height:1.5;text-align:left;}
+.install-tip strong{color:#4a2005;}
+</style>
+</head>
+<body>
+<div id="app">
+<div id="splash">
+  <div class="splash-btn-wrap">
+    <button class="splash-btn" onclick="showOrderApp()">Order Now ☕</button>
+  </div>
+  <div class="art-panels">
+    <div class="art-coffee">
+      <div class="coffee-bg"></div>
+      <div class="coffee-steam"><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div></div>
+      <div class="coffee-cup">
+        <div class="cup-body"><div class="cup-liquid"></div><div class="cup-foam"></div><div class="cup-handle"></div></div>
+        <div class="cup-saucer"></div>
+      </div>
+      <div class="coffee-beans"><div class="bean"></div><div class="bean"></div><div class="bean"></div></div>
+      <div class="coffee-label">
+        <div class="coffee-label-sub">Singapore</div>
+        <div class="coffee-label-main">Kopi</div>
+        <div class="coffee-label-zh">咖啡</div>
+      </div>
+      <div class="coffee-overlay"></div>
+    </div>
+    <div class="art-divider"></div>
+    <div class="art-tea">
+      <div class="tea-bg"></div>
+      <div class="tea-steam"><div class="tsteam"></div><div class="tsteam"></div><div class="tsteam"></div></div>
+      <div class="tea-cup">
+        <div class="tcup-body"><div class="tcup-liquid"></div><div class="tcup-foam"></div><div class="tcup-handle"></div></div>
+        <div class="tcup-saucer"></div>
+      </div>
+      <div class="tea-leaves"><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div></div>
+      <div class="tea-label">
+        <div class="tea-label-sub">Traditional</div>
+        <div class="tea-label-main">Teh</div>
+        <div class="tea-label-zh">茶</div>
+      </div>
+      <div class="tea-overlay"></div>
+    </div>
+    <div class="art-divider"></div>
+    <div class="art-drink">
+      <div class="drink-bg"></div>
+      <div class="drink-can">
+        <div class="can-top"><div class="can-tab"></div></div>
+        <div class="can-body">
+          <div class="can-stripe"></div>
+          <div class="can-label">COKE</div>
+        </div>
+      </div>
+      <div class="drink-glass">
+        <div class="glass-straw"></div>
+        <div class="glass-body">
+          <div class="glass-liquid"></div>
+          <div class="glass-ice"></div>
+          <div class="glass-ice2"></div>
+        </div>
+      </div>
+      <div class="drink-bubbles">
+        <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+      </div>
+      <div class="drink-label">
+        <div class="drink-label-sub">Refreshing</div>
+        <div class="drink-label-main">Drinks</div>
+      </div>
+      <div class="drink-overlay"></div>
+    </div>
+  </div>
+  <div class="splash-bottom">
+    <div class="splash-title">Kopitiam</div>
+    <div class="splash-sub">☕ Kopi · 茶 Teh · 🥤 Drinks</div>
+    <div class="splash-author">by TSLA23T</div>
+    <div class="install-tip"><strong>On iPhone:</strong> Tap Share → <strong>Add to Home Screen</strong> to install Kopitiam with its icon like a regular app.</div>
+  </div>
+</div>
+<div id="order-app">
+  <div class="app-header">
+    <button class="header-back" onclick="showSplash()">←</button>
+    <span class="header-title">☕ Kopitiam</span>
+    <div class="header-badge" id="cart-badge" onclick="showOrderView()">🛒</div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" id="tab-coffee" onclick="switchTab('coffee')">☕ Coffee</button>
+    <button class="tab" id="tab-tea" onclick="switchTab('tea')">🍵 Tea</button>
+    <button class="tab" id="tab-drinks" onclick="switchTab('drinks')">🥤 Drinks</button>
+  </div>
+  <div class="menu-grid" id="menu-grid"></div>
+  <div class="customize" id="customize" style="display:none;">
+    <div class="section-label">Cup Size</div>
+    <div class="opt-row" id="cup-row">
+      <button class="opt-btn active" id="cup-big" onclick="setCup('big')"><span class="opt-emoji">🥤</span>Big Cup</button>
+      <button class="opt-btn" id="cup-small" onclick="setCup('small')"><span class="opt-emoji">☕</span>Small Cup</button>
+    </div>
+    <div class="section-label" id="temp-label">Temperature</div>
+    <div class="opt-row">
+      <button class="opt-btn active" id="ice-hot" onclick="setIce('hot')">🔥 Hot</button>
+      <button class="opt-btn" id="ice-bua-siow" onclick="setIce('bua-siow')">🌡️ Bua Siow</button>
+      <button class="opt-btn" id="ice-peng" onclick="setIce('ice')">🧊 Ice</button>
+    </div>
+    <div class="section-label" id="sweet-label">🍬 Sweetness</div>
+    <div class="mod-row" id="sweet-row">
+      <button class="mod-btn" id="mod-siu-dai" onclick="toggleMod('siu-dai')">🍬 Siu Dai 少甜</button>
+      <button class="mod-btn" id="mod-gah-dai" onclick="toggleMod('gah-dai')">✨ Gah Dai 加甜</button>
+      <button class="mod-btn" id="mod-kosong" onclick="toggleMod('kosong')">⚪ Kosong 无糖</button>
+    </div>
+  </div>
+  <div class="panel" id="drink-temp" style="display:none;">
+    <div class="section-label">Temperature</div>
+    <div class="opt-row">
+      <button class="opt-btn active" id="drink-hot" onclick="setIce('hot')">🔥 Hot</button>
+      <button class="opt-btn" id="drink-cold" onclick="setIce('ice')">🧊 Cold</button>
+    </div>
+  </div>
+  <div class="panel" id="others-panel" style="display:none;">
+    <div class="section-label">What drink?</div>
+    <input id="others-input" type="text" placeholder="e.g. Teh Tarik, 100 Plus…" oninput="checkOthers()" style="width:100%;padding:11px 14px;border:2px solid #d4a05a;border-radius:10px;font-size:15px;font-family:inherit;color:#4a2005;background:#fff;outline:none;margin-bottom:14px;box-sizing:border-box;"/>
+  </div>
+  <div class="panel" id="qty-panel" style="display:none;">
+    <div class="section-label">Quantity</div>
+    <div class="qty-row">
+      <button class="qty-btn" onclick="changeQty(-1)">−</button>
+      <span class="qty-num" id="qty-display">1</span>
+      <button class="qty-btn" onclick="changeQty(1)">+</button>
+    </div>
+  </div>
+  <button class="add-btn" id="add-btn" onclick="addToOrder()">+ Add to Order</button>
+  <div class="floating-bar" id="floating-bar" style="display:none;" onclick="showOrderView()">
+    <span id="floating-count">0 item(s) in order</span>
+    <span>View Order →</span>
+  </div>
+</div>
+<div id="order-view">
+  <div class="app-header">
+    <button class="header-back" onclick="showOrderApp()">←</button>
+    <span class="header-title">Your Order</span>
+    <div style="width:32px;"></div>
+  </div>
+  <div class="order-list" id="order-list-el"></div>
+</div>
+<div id="confirm-view">
+  <div class="app-header">
+    <div style="width:32px;"></div>
+    <span class="header-title">☕ Kopitiam</span>
+    <div style="width:32px;"></div>
+  </div>
+  <div class="confirm-content">
+    <span class="confirm-emoji">🎉</span>
+    <div class="confirm-title">Order Placed!</div>
+    <div class="confirm-table" id="confirm-table"></div>
+    <div class="confirm-items" id="confirm-items"></div>
+    <div class="confirm-sub">Your drinks will be ready shortly 🙏</div>
+    <button class="new-order-btn" onclick="newOrder()">New Order</button>
+  </div>
+</div>
+</div>
+<script>
+const MENU = {
+  coffee:[
+    {id:'kopi',name:'Kopi',desc:'Coffee + condensed milk'},
+    {id:'kopi-o',name:'Kopi-O',desc:'Black coffee + sugar'},
+    {id:'kopi-o-kosong',name:'Kopi-O Kosong',desc:'Black coffee, plain'},
+    {id:'kopi-c',name:'Kopi C',desc:'Coffee + evaporated milk'},
+    {id:'kopi-c-kosong',name:'Kopi C Kosong',desc:'Coffee + evap milk, no sugar'},
+    {id:'kopi-gau',name:'Kopi Gau',desc:'Extra strong coffee'},
+    {id:'kopi-po',name:'Kopi Po',desc:'Light coffee'},
+    {id:'kopi-di-lo',name:'Kopi Di Lo',desc:'Coffee in small cup, very thick'},
+    {id:'kopi-gau-di-lo',name:'Kopi Gau Di Lo',desc:'Extra strong coffee in small cup'},
+  ],
+  tea:[
+    {id:'teh',name:'Teh',desc:'Tea + condensed milk'},
+    {id:'teh-o',name:'Teh-O',desc:'Black tea + sugar'},
+    {id:'teh-o-kosong',name:'Teh-O Kosong',desc:'Black tea, plain'},
+    {id:'teh-c',name:'Teh C',desc:'Tea + evaporated milk'},
+    {id:'teh-tarik',name:'Teh Tarik',desc:'Pulled frothy milk tea'},
+    {id:'teh-halia',name:'Teh Halia',desc:'Ginger milk tea'},
+    {id:'teh-gau',name:'Teh Gau',desc:'Extra strong tea'},
+  ],
+  drinks:[
+    {id:'coke',name:'Coke',desc:'Coca-Cola'},
+    {id:'coke-zero',name:'Coke Zero',desc:'Sugar-free Coca-Cola'},
+    {id:'limau',name:'Limau',desc:'Fresh lime juice'},
+    {id:'ais-lemon-tea',name:'Ais Lemon Tea',desc:'Iced lemon tea'},
+    {id:'bandung',name:'Bandung',desc:'Rose syrup with evaporated milk'},
+    {id:'milo',name:'Milo',desc:'Milo'},
+    {id:'barley',name:'Barley',desc:'Barley water'},
+    {id:'others',name:'Others…',desc:'Enter your own drink'},
+  ]
+};
+const DRINK_IDS = ['coke','coke-zero','limau','ais-lemon-tea','bandung','milo','barley','others'];
+const SWEET_MODS = ['siu-dai','gah-dai','kosong'];
+let S = { tab:'coffee', selected:null, cup:'big', ice:'hot', mods:[], qty:1, order:[] };
+function showSplash(){
+  show('splash','flex'); hide('order-app'); hide('order-view'); hide('confirm-view');
+}
+function showOrderApp(){
+  hide('splash'); show('order-app','flex'); hide('order-view'); hide('confirm-view');
+}
+function showOrderView(){
+  if(!S.order.length) return;
+  hide('order-app'); show('order-view','flex'); hide('confirm-view');
+  renderOrderView();
+}
+function showConfirm(){
+  hide('order-view'); show('confirm-view','flex');
+}
+function show(id,d){var e=document.getElementById(id);e.style.display=d||'block';if(d==='flex')e.style.flexDirection='column';}
+function hide(id){document.getElementById(id).style.display='none';}
+function switchTab(tab){
+  S.tab=tab; S.selected=null; S.mods=[]; S.ice='hot'; S.cup='big'; S.qty=1;
+  ['coffee','tea','drinks'].forEach(t=>{
+    document.getElementById('tab-'+t).className='tab'+(t===tab?' active':'');
+  });
+  renderMenu();
+  hideAllPanels();
+  document.getElementById('add-btn').className='add-btn';
+}
+function hideAllPanels(){
+  hide('customize'); hide('drink-temp'); hide('others-panel'); hide('qty-panel');
+}
+function renderMenu(){
+  const grid=document.getElementById('menu-grid');
+  grid.innerHTML='';
+  MENU[S.tab].forEach(item=>{
+    const c=document.createElement('div');
+    c.className='menu-card'+(S.selected===item.id?' active':'');
+    c.innerHTML='<div class="card-name">'+item.name+'</div><div class="card-desc">'+item.desc+'</div>';
+    c.onclick=()=>selectItem(item.id);
+    grid.appendChild(c);
+  });
+}
+function selectItem(id){
+  S.selected=id; S.mods=[]; S.ice='hot'; S.cup='big'; S.qty=1;
+  renderMenu();
+  hideAllPanels();
+  document.getElementById('qty-display').textContent='1';
+  resetDrinkTempBtns();
+  const isDrink = DRINK_IDS.includes(id);
+  if(id==='others'){
+    show('drink-temp'); show('others-panel'); show('qty-panel');
+    document.getElementById('others-input').value='';
+    document.getElementById('add-btn').className='add-btn';
+  } else if(isDrink){
+    show('drink-temp'); show('qty-panel');
+    document.getElementById('add-btn').className='add-btn ready';
+  } else {
+    show('customize');
+    show('qty-panel');
+    document.getElementById('cup-big').className='opt-btn active';
+    document.getElementById('cup-small').className='opt-btn';
+    resetCoffeeTempBtns();
+    SWEET_MODS.forEach(m=>document.getElementById('mod-'+m).className='mod-btn');
+    document.getElementById('add-btn').className='add-btn ready';
+  }
+}
+function resetDrinkTempBtns(){
+  document.getElementById('drink-hot').className='opt-btn active';
+  document.getElementById('drink-cold').className='opt-btn';
+}
+function resetCoffeeTempBtns(){
+  document.getElementById('ice-hot').className='opt-btn active';
+  document.getElementById('ice-bua-siow').className='opt-btn';
+  document.getElementById('ice-peng').className='opt-btn';
+}
+function setCup(v){
+  S.cup=v;
+  document.getElementById('cup-big').className='opt-btn'+(v==='big'?' active':'');
+  document.getElementById('cup-small').className='opt-btn'+(v==='small'?' active':'');
+}
+function setIce(v){
+  S.ice=v;
+  if(document.getElementById('ice-hot')){
+    document.getElementById('ice-hot').className='opt-btn'+(v==='hot'?' active':'');
+    document.getElementById('ice-bua-siow').className='opt-btn'+(v==='bua-siow'?' active':'');
+    document.getElementById('ice-peng').className='opt-btn'+(v==='ice'?' active':'');
+  }
+  document.getElementById('drink-hot').className='opt-btn'+(v==='hot'?' active':'');
+  document.getElementById('drink-cold').className='opt-btn'+(v==='ice'?' active':'');
+}
+function toggleMod(id){
+  S.mods=S.mods.filter(m=>!SWEET_MODS.includes(m));
+  if(!S.mods.includes(id)) S.mods.push(id);
+  SWEET_MODS.forEach(m=>document.getElementById('mod-'+m).className='mod-btn'+(S.mods.includes(m)?' active':''));
+}
+function changeQty(d){ S.qty=Math.max(1,S.qty+d); document.getElementById('qty-display').textContent=S.qty; }
+function checkOthers(){
+  const v=document.getElementById('others-input').value.trim();
+  document.getElementById('add-btn').className='add-btn'+(v?' ready':'');
+}
+function buildName(item){
+  const isDrink=DRINK_IDS.includes(item.id);
+  if(item.id==='others') return document.getElementById('others-input').value.trim();
+  let parts=[item.name];
+  if(!isDrink){
+    parts.push(S.cup==='big'?'Big Cup':'Small Cup');
+  }
+  if(S.ice==='hot') parts.push('Hot 热');
+  else if(S.ice==='bua-siow') parts.push('Bua Siow 半热');
+  else parts.push('Peng 冰');
+  if(!isDrink){
+    const ml={'siu-dai':'Siu Dai','gah-dai':'Gah Dai','kosong':'Kosong'};
+    S.mods.forEach(m=>{if(ml[m])parts.push(ml[m]);});
+  }
+  return parts.join(' · ');
+}
+function addToOrder(){
+  if(!S.selected) return;
+  const all=[...MENU.coffee,...MENU.tea,...MENU.drinks];
+  const item=all.find(i=>i.id===S.selected);
+  if(!item) return;
+  const name=buildName(item);
+  if(!name) return;
+  S.order.push({id:Date.now(),name,qty:S.qty});
+  S.selected=null; S.mods=[]; S.ice='hot'; S.cup='big'; S.qty=1;
+  renderMenu(); hideAllPanels();
+  document.getElementById('add-btn').className='add-btn';
+  updateBadge();
+}
+function updateBadge(){
+  const tot=S.order.reduce((s,o)=>s+o.qty,0);
+  document.getElementById('cart-badge').textContent=tot||'🛒';
+  const fb=document.getElementById('floating-bar');
+  if(tot>0){
+    fb.style.display='flex';
+    document.getElementById('floating-count').textContent=tot+' item(s) in order';
+  } else { fb.style.display='none'; }
+}
+function removeOrder(id){ S.order=S.order.filter(o=>o.id!==id); updateBadge(); renderOrderView(); if(!S.order.length)showOrderApp(); }
+function renderOrderView(){
+  const el=document.getElementById('order-list-el');
+  if(!S.order.length){ el.innerHTML='<div class="empty-msg"><div style="font-size:40px;margin-bottom:12px">🫗</div>No items yet.</div>'; return; }
+  let h='';
+  S.order.forEach(o=>{ h+='<div class="order-item"><div><div class="order-item-name">'+o.name+'</div><div class="order-item-qty">Qty: '+o.qty+'</div></div><button class="remove-btn" onclick="removeOrder('+o.id+')">✕</button></div>'; });
+  h+='<hr class="divider"/><div class="table-label">Table Number (optional)</div><input class="table-input" id="table-input" placeholder="e.g. 5"/><button class="place-btn" onclick="placeOrder()">✅ Place Order</button>';
+  el.innerHTML=h;
+}
+function placeOrder(){
+  const t=document.getElementById('table-input');
+  document.getElementById('confirm-table').textContent=t&&t.value.trim()?'Table '+t.value.trim():'';
+  document.getElementById('confirm-items').innerHTML=S.order.map(o=>o.qty+'× '+o.name).join('<br/>');
+  showConfirm();
+}
+function newOrder(){
+  S.order=[]; S.selected=null; S.tab='coffee'; S.mods=[]; S.ice='hot'; S.cup='big'; S.qty=1;
+  updateBadge(); switchTab('coffee'); showSplash();
+}
+renderMenu();
+</script>
+</body>
+</html>
