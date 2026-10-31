@@ -5,44 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="Kopitiam"/>
+<meta name="apple-mobile-web-app-title" content="23T Kopitiam"/>
 <meta name="theme-color" content="#1a0a00"/>
-<title>Kopitiam ☕</title>
+<title>23T Kopitiam ☕</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{background:#1a0a00;font-family:'Palatino Linotype','Book Antiqua',Palatino,Georgia,serif;display:flex;justify-content:center;min-height:100vh;}
 #app{width:100%;max-width:480px;min-height:100vh;position:relative;}
 #splash{min-height:100vh;background:#1a0a00;display:flex;flex-direction:column;}
-.splash-btn-wrap{padding:16px 20px;background:linear-gradient(180deg,#1a0a00 60%,transparent);z-index:20;}
-.splash-btn{width:100%;padding:14px 0;background:linear-gradient(135deg,#c8873a,#7b3f10);color:#fdf6ec;border:none;border-radius:14px;font-size:17px;font-weight:bold;cursor:pointer;font-family:inherit;letter-spacing:2px;text-transform:uppercase;box-shadow:0 6px 28px rgba(200,135,58,.45);}
+.splash-btn-wrap{padding:10px 16px;background:linear-gradient(180deg,#1a0a00 60%,transparent);z-index:20;}
+.splash-btn{width:100%;padding:10px 0;background:linear-gradient(135deg,#c8873a,#7b3f10);color:#fdf6ec;border:none;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer;font-family:inherit;letter-spacing:2px;text-transform:uppercase;box-shadow:0 6px 28px rgba(200,135,58,.45);}
 .splash-btn:active{opacity:.85;}
-.art-panels{display:flex;height:52vh;}
+.art-panels{display:flex;height:38vh;}
 .art-divider{width:2px;background:linear-gradient(to bottom,transparent,#c8873a 30%,#c8873a 70%,transparent);flex-shrink:0;}
-.art-coffee{flex:1;position:relative;overflow:hidden;background:#2b1506;}
-.art-tea{flex:1;position:relative;overflow:hidden;background:#0f2a10;}
-.art-drink{flex:1;position:relative;overflow:hidden;background:#0a1a2e;}
+.art-coffee{flex:1;position:relative;overflow:hidden;background:#2b1506;cursor:pointer;}
+.art-tea{flex:1;position:relative;overflow:hidden;background:#0f2a10;cursor:pointer;}
+.art-drink{flex:1;position:relative;overflow:hidden;background:#0a1a2e;cursor:pointer;}
 .drink-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,#1a3a5c,#0a1a2e 60%,#050a15);}
-.drink-can{position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);}
+.drink-can{position:absolute;top:38%;left:50%;transform:translate(-50%,-55%);}
 .can-body{width:34px;height:54px;background:linear-gradient(135deg,#e8334a,#c0392b);border-radius:5px 5px 4px 4px;position:relative;box-shadow:inset -5px 0 10px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.5);}
 .can-top{width:34px;height:8px;background:linear-gradient(135deg,#c0c0c0,#888);border-radius:3px 3px 0 0;margin-top:-1px;}
 .can-tab{width:10px;height:5px;background:#aaa;border-radius:3px;margin:0 auto;margin-top:-3px;}
 .can-stripe{position:absolute;top:16px;left:0;right:0;height:12px;background:rgba(255,255,255,.15);border-radius:0;}
 .can-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:rgba(255,255,255,.9);font-size:7px;font-weight:bold;letter-spacing:1px;text-align:center;text-shadow:0 1px 3px rgba(0,0,0,.4);}
-.drink-glass{position:absolute;top:50%;left:50%;transform:translate(-50%,10%);}
+.drink-glass{position:absolute;top:38%;left:50%;transform:translate(-50%,10%);}
 .glass-body{width:28px;height:36px;background:linear-gradient(135deg,rgba(255,255,255,.25),rgba(255,255,255,.05));border:1.5px solid rgba(255,255,255,.3);border-top:none;border-radius:0 0 8px 8px;position:relative;overflow:hidden;}
 .glass-liquid{position:absolute;bottom:0;left:0;right:0;height:70%;background:linear-gradient(180deg,rgba(255,200,50,.7),rgba(220,150,30,.9));border-radius:0 0 6px 6px;}
 .glass-ice{position:absolute;top:4px;left:4px;width:8px;height:8px;background:rgba(255,255,255,.8);border-radius:2px;transform:rotate(15deg);}
 .glass-ice2{position:absolute;top:2px;right:5px;width:6px;height:6px;background:rgba(255,255,255,.7);border-radius:2px;transform:rotate(-20deg);}
 .glass-straw{position:absolute;top:-18px;right:6px;width:3px;height:26px;background:linear-gradient(180deg,#ff6b9d,#c84b7a);border-radius:2px;transform:rotate(8deg);}
-.drink-bubbles{position:absolute;bottom:18%;width:100%;display:flex;justify-content:space-around;padding:0 25%;}
+.drink-bubbles{position:absolute;bottom:28%;width:100%;display:flex;justify-content:space-around;padding:0 25%;}
 .bubble{border-radius:50%;background:rgba(255,255,255,.15);animation:bubble-rise 3s ease-in-out infinite;}
 .bubble:nth-child(1){width:6px;height:6px;animation-delay:0s;}
 .bubble:nth-child(2){width:4px;height:4px;animation-delay:1s;}
 .bubble:nth-child(3){width:5px;height:5px;animation-delay:2s;}
 @keyframes bubble-rise{0%,100%{transform:translateY(0);opacity:.6;}50%{transform:translateY(-8px);opacity:.2;}}
-.drink-label{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);text-align:center;white-space:nowrap;}
-.drink-label-sub{color:#a8c8e8;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:3px;}
-.drink-label-main{color:#e8f4ff;font-size:22px;font-weight:bold;text-shadow:0 2px 12px rgba(0,0,0,.6);}
+.drink-label{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);text-align:center;white-space:nowrap;}
+.drink-label-sub{color:#a8c8e8;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:3px;}
+.drink-label-main{color:#e8f4ff;font-size:26px;font-weight:bold;text-shadow:0 2px 12px rgba(0,0,0,.6);}
 .drink-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,10,20,.05),rgba(5,10,20,.4));}
 .coffee-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,#6b3010,#2b1506 60%,#1a0a00);}
 .tea-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,#1e4a1e,#0f2a10 50%,#050f05);}
@@ -84,64 +84,64 @@ body{background:#1a0a00;font-family:'Palatino Linotype','Book Antiqua',Palatino,
 .tea-label-sub{color:#a8d8a8;}
 .tea-label-main{color:#e8f5e8;font-size:26px;font-weight:bold;text-shadow:0 2px 12px rgba(0,0,0,.6);}
 .tea-overlay{position:absolute;inset:0;background:linear-gradient(to left,rgba(5,15,5,.1),rgba(5,15,5,.5));}
-.splash-bottom{background:linear-gradient(180deg,#1a0a00,#2d1205);padding:16px 24px 24px;text-align:center;}
-.splash-title{font-size:36px;font-weight:bold;color:#fdf6ec;letter-spacing:3px;text-shadow:0 2px 24px rgba(200,135,58,.4);}
-.splash-sub{color:#c8873a;font-size:11px;letter-spacing:5px;text-transform:uppercase;margin-top:6px;}
-.splash-author{color:#5a3820;font-size:11px;letter-spacing:2px;margin-top:14px;}
+.splash-bottom{background:linear-gradient(180deg,#1a0a00,#2d1205);padding:10px 20px 16px;text-align:center;}
+.splash-title{font-size:30px;font-weight:bold;color:#fdf6ec;letter-spacing:3px;text-shadow:0 2px 24px rgba(200,135,58,.4);}
+.splash-sub{color:#c8873a;font-size:11px;letter-spacing:5px;text-transform:uppercase;margin-top:4px;}
+.splash-author{color:#c8873a;font-size:13px;font-weight:bold;letter-spacing:2px;margin-top:10px;text-shadow:0 2px 12px rgba(0,0,0,.6);}
 #order-app{display:none;flex-direction:column;min-height:100vh;background:#fdf6ec;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c8873a' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");color:#2d1a05;}
-.app-header{background:linear-gradient(135deg,#7b3f10,#c8873a);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px rgba(123,63,16,.3);}
-.header-back{background:none;border:none;color:#fdf6ec;font-size:22px;cursor:pointer;padding:0;line-height:1;font-family:inherit;}
-.header-title{color:#fdf6ec;font-weight:bold;font-size:20px;font-family:inherit;}
-.header-badge{background:#fdf6ec;color:#7b3f10;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:13px;cursor:pointer;border:2px solid #c8873a;}
+.app-header{background:linear-gradient(135deg,#7b3f10,#c8873a);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px rgba(123,63,16,.3);}
+.header-back{background:none;border:none;color:#fdf6ec;font-size:20px;cursor:pointer;padding:0;line-height:1;font-family:inherit;}
+.header-title{color:#fdf6ec;font-weight:bold;font-size:18px;font-family:inherit;}
+.header-badge{background:#fdf6ec;color:#7b3f10;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:12px;cursor:pointer;border:2px solid #c8873a;}
 .tabs{display:flex;background:#f5e6ce;border-bottom:2px solid #d4a05a;}
-.tab{flex:1;padding:12px 0;text-align:center;cursor:pointer;font-size:14px;color:#a07040;background:transparent;border:none;border-bottom:3px solid transparent;font-family:inherit;transition:all .2s;}
+.tab{flex:1;padding:7px 0;text-align:center;cursor:pointer;font-size:13px;color:#a07040;background:transparent;border:none;border-bottom:3px solid transparent;font-family:inherit;transition:all .2s;}
 .tab.active{font-weight:bold;color:#7b3f10;background:#fdf6ec;border-bottom:3px solid #c8873a;}
-.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px;}
-.menu-card{background:#fff;border:2px solid #e8d0a8;border-radius:12px;padding:14px 12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:all .2s;}
-.menu-card.active{background:linear-gradient(135deg,#7b3f10,#c8873a);border-color:#7b3f10;box-shadow:0 4px 16px rgba(123,63,16,.35);transform:scale(1.03);}
-.card-name{font-weight:bold;font-size:15px;color:#4a2005;margin-bottom:4px;}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;}
+.menu-card{background:#fff;border:2px solid #e8d0a8;border-radius:10px;padding:8px 10px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:all .2s;}
+.menu-card.active{background:linear-gradient(135deg,#7b3f10,#c8873a);border-color:#7b3f10;box-shadow:0 4px 16px rgba(123,63,16,.35);transform:scale(1.02);}
+.card-name{font-weight:bold;font-size:14px;color:#4a2005;margin-bottom:2px;}
 .menu-card.active .card-name{color:#fdf6ec;}
 .card-desc{font-size:11px;color:#a07040;line-height:1.4;}
 .menu-card.active .card-desc{color:#f5d9a8;}
-.customize{background:#fff8ee;border-top:2px solid #e8d0a8;padding:14px 16px 0;}
-.section-label{font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#a07040;margin-bottom:10px;}
-.opt-row{display:flex;gap:8px;margin-bottom:14px;}
-.opt-btn{flex:1;padding:10px 4px;border-radius:10px;border:2px solid #d4a05a;background:#fff;color:#7b3f10;font-size:13px;cursor:pointer;font-family:inherit;text-align:center;line-height:1.5;transition:all .15s;}
+.customize{background:#fff8ee;border-top:2px solid #e8d0a8;padding:8px 12px 0;}
+.section-label{font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#a07040;margin-bottom:5px;}
+.opt-row{display:flex;gap:6px;margin-bottom:8px;}
+.opt-btn{flex:1;padding:5px 3px;border-radius:8px;border:2px solid #d4a05a;background:#fff;color:#7b3f10;font-size:12px;cursor:pointer;font-family:inherit;text-align:center;line-height:1.35;transition:all .15s;}
 .opt-btn.active{border-color:#7b3f10;background:#7b3f10;color:#fdf6ec;font-weight:bold;}
-.opt-emoji{font-size:22px;display:block;margin-bottom:2px;}
-.mod-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
-.mod-btn{padding:7px 14px;border-radius:20px;border:2px solid #d4a05a;background:#fff;color:#7b3f10;font-size:13px;cursor:pointer;font-family:inherit;transition:all .15s;}
+.opt-emoji{font-size:16px;display:inline;margin-right:3px;}
+.mod-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+.mod-btn{padding:4px 10px;border-radius:16px;border:2px solid #d4a05a;background:#fff;color:#7b3f10;font-size:12px;cursor:pointer;font-family:inherit;transition:all .15s;}
 .mod-btn.active{border-color:#7b3f10;background:#7b3f10;color:#fdf6ec;font-weight:bold;}
-.panel{background:#fff8ee;border-top:2px solid #e8d0a8;padding:14px 16px 0;}
-.qty-row{display:flex;align-items:center;gap:16px;margin-bottom:14px;}
-.qty-btn{width:34px;height:34px;border-radius:50%;border:2px solid #c8873a;background:#fff;color:#7b3f10;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:bold;font-family:inherit;}
-.qty-num{font-size:20px;font-weight:bold;color:#4a2005;min-width:28px;text-align:center;}
-.add-btn{width:calc(100% - 32px);margin:0 16px 16px;padding:14px 0;background:linear-gradient(135deg,#7b3f10,#c8873a);color:#fdf6ec;border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;font-family:inherit;opacity:.4;transition:opacity .2s;}
+.panel{background:#fff8ee;border-top:2px solid #e8d0a8;padding:8px 12px 0;}
+.qty-row{display:flex;align-items:center;gap:12px;margin-bottom:8px;}
+.qty-btn{width:28px;height:28px;border-radius:50%;border:2px solid #c8873a;background:#fff;color:#7b3f10;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:bold;font-family:inherit;}
+.qty-num{font-size:17px;font-weight:bold;color:#4a2005;min-width:24px;text-align:center;}
+.add-btn{width:calc(100% - 24px);margin:0 12px 10px;padding:10px 0;background:linear-gradient(135deg,#7b3f10,#c8873a);color:#fdf6ec;border:none;border-radius:10px;font-size:15px;font-weight:bold;cursor:pointer;font-family:inherit;opacity:.4;transition:opacity .2s;}
 .add-btn.ready{opacity:1;}
 .add-btn:active{opacity:.8;}
-.floating-bar{position:sticky;bottom:0;background:linear-gradient(135deg,#7b3f10,#c8873a);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;box-shadow:0 -4px 16px rgba(123,63,16,.25);}
+.floating-bar{position:sticky;bottom:0;background:linear-gradient(135deg,#7b3f10,#c8873a);padding:9px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;box-shadow:0 -4px 16px rgba(123,63,16,.25);}
 .floating-bar span{color:#fdf6ec;font-weight:bold;font-size:14px;}
 #order-view{display:none;flex-direction:column;min-height:100vh;background:#fdf6ec;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c8873a' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");color:#2d1a05;}
-.order-list{padding:16px;}
-.order-item{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:10px;padding:12px 14px;margin-bottom:10px;border:1.5px solid #e8d0a8;box-shadow:0 2px 6px rgba(0,0,0,.05);}
-.order-item-name{font-weight:bold;font-size:15px;color:#4a2005;}
-.order-item-qty{font-size:12px;color:#a07040;margin-top:2px;}
-.remove-btn{background:none;border:none;color:#c0392b;font-size:18px;cursor:pointer;padding:0 4px;}
-.divider{border:none;border-top:2px dashed #d4a05a;margin:12px 0;}
-.table-label{font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#a07040;margin-bottom:8px;}
-.table-input{width:100%;padding:12px 14px;border:2px solid #d4a05a;border-radius:10px;font-size:15px;font-family:inherit;color:#4a2005;background:#fff;margin-bottom:12px;outline:none;}
-.place-btn{width:100%;padding:15px 0;background:linear-gradient(135deg,#1a7b3f,#2ecc71);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;font-family:inherit;}
+.order-list{padding:10px 12px;}
+.order-item{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:10px;padding:8px 12px;margin-bottom:7px;border:1.5px solid #e8d0a8;box-shadow:0 2px 6px rgba(0,0,0,.05);}
+.order-item-name{font-weight:bold;font-size:14px;color:#4a2005;}
+.order-item-qty{font-size:12px;color:#a07040;margin-top:1px;}
+.remove-btn{background:none;border:none;color:#c0392b;font-size:17px;cursor:pointer;padding:0 4px;}
+.divider{border:none;border-top:2px dashed #d4a05a;margin:8px 0;}
+.table-label{font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#a07040;margin-bottom:6px;}
+.table-input{width:100%;padding:9px 12px;border:2px solid #d4a05a;border-radius:10px;font-size:15px;font-family:inherit;color:#4a2005;background:#fff;margin-bottom:9px;outline:none;}
+.place-btn{width:100%;padding:11px 0;background:linear-gradient(135deg,#1a7b3f,#2ecc71);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:bold;cursor:pointer;font-family:inherit;}
 .place-btn:active{opacity:.85;}
-.empty-msg{text-align:center;color:#a07040;padding:40px 0;}
+.empty-msg{text-align:center;color:#a07040;padding:24px 0;}
 #confirm-view{display:none;flex-direction:column;min-height:100vh;background:#fdf6ec;color:#2d1a05;}
-.confirm-content{text-align:center;padding:40px 24px;}
-.confirm-emoji{font-size:64px;display:block;margin-bottom:16px;}
-.confirm-title{font-size:24px;font-weight:bold;color:#1a7b3f;margin-bottom:8px;}
-.confirm-table{font-size:16px;color:#4a2005;font-weight:bold;margin-bottom:8px;}
-.confirm-items{font-size:14px;color:#7b3f10;line-height:1.9;margin-bottom:24px;}
-.confirm-sub{font-size:13px;color:#a07040;margin-bottom:24px;}
-.new-order-btn{padding:14px 32px;background:linear-gradient(135deg,#7b3f10,#c8873a);color:#fdf6ec;border:none;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer;font-family:inherit;}
-.install-tip{margin:18px 20px 0;padding:12px 14px;background:#fff8ee;border:1.5px dashed #d4a05a;border-radius:12px;font-size:13px;color:#7b3f10;line-height:1.5;text-align:left;}
+.confirm-content{text-align:center;padding:24px 20px;}
+.confirm-emoji{font-size:48px;display:block;margin-bottom:10px;}
+.confirm-title{font-size:22px;font-weight:bold;color:#1a7b3f;margin-bottom:6px;}
+.confirm-table{font-size:16px;color:#4a2005;font-weight:bold;margin-bottom:6px;}
+.confirm-items{font-size:14px;color:#7b3f10;line-height:1.7;margin-bottom:16px;}
+.confirm-sub{font-size:13px;color:#a07040;margin-bottom:16px;}
+.new-order-btn{padding:10px 28px;background:linear-gradient(135deg,#7b3f10,#c8873a);color:#fdf6ec;border:none;border-radius:10px;font-size:15px;font-weight:bold;cursor:pointer;font-family:inherit;}
+.install-tip{margin:12px 16px 0;padding:9px 12px;background:#fff8ee;border:1.5px dashed #d4a05a;border-radius:10px;font-size:12px;color:#7b3f10;line-height:1.45;text-align:left;}
 .install-tip strong{color:#4a2005;}
 </style>
 </head>
@@ -152,7 +152,7 @@ body{background:#1a0a00;font-family:'Palatino Linotype','Book Antiqua',Palatino,
     <button class="splash-btn" onclick="showOrderApp()">Order Now ☕</button>
   </div>
   <div class="art-panels">
-    <div class="art-coffee">
+    <div class="art-coffee" onclick="goToCategory('coffee')">
       <div class="coffee-bg"></div>
       <div class="coffee-steam"><div class="steam-line"></div><div class="steam-line"></div><div class="steam-line"></div></div>
       <div class="coffee-cup">
@@ -168,7 +168,7 @@ body{background:#1a0a00;font-family:'Palatino Linotype','Book Antiqua',Palatino,
       <div class="coffee-overlay"></div>
     </div>
     <div class="art-divider"></div>
-    <div class="art-tea">
+    <div class="art-tea" onclick="goToCategory('tea')">
       <div class="tea-bg"></div>
       <div class="tea-steam"><div class="tsteam"></div><div class="tsteam"></div><div class="tsteam"></div></div>
       <div class="tea-cup">
@@ -184,7 +184,7 @@ body{background:#1a0a00;font-family:'Palatino Linotype','Book Antiqua',Palatino,
       <div class="tea-overlay"></div>
     </div>
     <div class="art-divider"></div>
-    <div class="art-drink">
+    <div class="art-drink" onclick="goToCategory('drinks')">
       <div class="drink-bg"></div>
       <div class="drink-can">
         <div class="can-top"><div class="can-tab"></div></div>
@@ -212,16 +212,16 @@ body{background:#1a0a00;font-family:'Palatino Linotype','Book Antiqua',Palatino,
     </div>
   </div>
   <div class="splash-bottom">
-    <div class="splash-title">Kopitiam</div>
+    <div class="splash-title">23T Kopitiam</div>
     <div class="splash-sub">☕ Kopi · 茶 Teh · 🥤 Drinks</div>
-    <div class="splash-author">by TSLA23T</div>
-    <div class="install-tip"><strong>On iPhone:</strong> Tap Share → <strong>Add to Home Screen</strong> to install Kopitiam with its icon like a regular app.</div>
+    <div class="splash-author">Developed by TSLA23T <span style="font-weight:normal;">V2.0</span></div>
+    <div class="install-tip"><strong>On iPhone:</strong> Tap Share → <strong>Add to Home Screen</strong> to install 23T Kopitiam with its icon like a regular app.</div>
   </div>
 </div>
 <div id="order-app">
   <div class="app-header">
     <button class="header-back" onclick="showSplash()">←</button>
-    <span class="header-title">☕ Kopitiam</span>
+    <span class="header-title">☕ 23T Kopitiam</span>
     <div class="header-badge" id="cart-badge" onclick="showOrderView()">🛒</div>
   </div>
   <div class="tabs">
@@ -231,10 +231,11 @@ body{background:#1a0a00;font-family:'Palatino Linotype','Book Antiqua',Palatino,
   </div>
   <div class="menu-grid" id="menu-grid"></div>
   <div class="customize" id="customize" style="display:none;">
-    <div class="section-label">Cup Size</div>
-    <div class="opt-row" id="cup-row">
-      <button class="opt-btn active" id="cup-big" onclick="setCup('big')"><span class="opt-emoji">🥤</span>Big Cup</button>
-      <button class="opt-btn" id="cup-small" onclick="setCup('small')"><span class="opt-emoji">☕</span>Small Cup</button>
+    <div class="section-label" id="sweet-label">🍬 Sweetness</div>
+    <div class="mod-row" id="sweet-row">
+      <button class="mod-btn" id="mod-siu-dai" onclick="toggleMod('siu-dai')">🍬 Siu Dai 少甜</button>
+      <button class="mod-btn" id="mod-gah-dai" onclick="toggleMod('gah-dai')">✨ Gah Dai 加甜</button>
+      <button class="mod-btn" id="mod-kosong" onclick="toggleMod('kosong')">⚪ Kosong 无糖</button>
     </div>
     <div class="section-label" id="temp-label">Temperature</div>
     <div class="opt-row">
@@ -242,11 +243,10 @@ body{background:#1a0a00;font-family:'Palatino Linotype','Book Antiqua',Palatino,
       <button class="opt-btn" id="ice-bua-siow" onclick="setIce('bua-siow')">🌡️ Bua Siow</button>
       <button class="opt-btn" id="ice-peng" onclick="setIce('ice')">🧊 Ice</button>
     </div>
-    <div class="section-label" id="sweet-label">🍬 Sweetness</div>
-    <div class="mod-row" id="sweet-row">
-      <button class="mod-btn" id="mod-siu-dai" onclick="toggleMod('siu-dai')">🍬 Siu Dai 少甜</button>
-      <button class="mod-btn" id="mod-gah-dai" onclick="toggleMod('gah-dai')">✨ Gah Dai 加甜</button>
-      <button class="mod-btn" id="mod-kosong" onclick="toggleMod('kosong')">⚪ Kosong 无糖</button>
+    <div class="section-label">Cup Size</div>
+    <div class="opt-row" id="cup-row">
+      <button class="opt-btn active" id="cup-big" onclick="setCup('big')"><span class="opt-emoji">🥤</span>Big Cup</button>
+      <button class="opt-btn" id="cup-small" onclick="setCup('small')"><span class="opt-emoji">☕</span>Small Cup</button>
     </div>
   </div>
   <div class="panel" id="drink-temp" style="display:none;">
@@ -258,7 +258,7 @@ body{background:#1a0a00;font-family:'Palatino Linotype','Book Antiqua',Palatino,
   </div>
   <div class="panel" id="others-panel" style="display:none;">
     <div class="section-label">What drink?</div>
-    <input id="others-input" type="text" placeholder="e.g. Teh Tarik, 100 Plus…" oninput="checkOthers()" style="width:100%;padding:11px 14px;border:2px solid #d4a05a;border-radius:10px;font-size:15px;font-family:inherit;color:#4a2005;background:#fff;outline:none;margin-bottom:14px;box-sizing:border-box;"/>
+    <input id="others-input" type="text" placeholder="e.g. Teh Tarik, 100 Plus…" oninput="checkOthers()" style="width:100%;padding:8px 12px;border:2px solid #d4a05a;border-radius:10px;font-size:15px;font-family:inherit;color:#4a2005;background:#fff;outline:none;margin-bottom:8px;box-sizing:border-box;"/>
   </div>
   <div class="panel" id="qty-panel" style="display:none;">
     <div class="section-label">Quantity</div>
@@ -278,15 +278,15 @@ body{background:#1a0a00;font-family:'Palatino Linotype','Book Antiqua',Palatino,
   <div class="app-header">
     <button class="header-back" onclick="showOrderApp()">←</button>
     <span class="header-title">Your Order</span>
-    <div style="width:32px;"></div>
+    <div style="width:28px;"></div>
   </div>
   <div class="order-list" id="order-list-el"></div>
 </div>
 <div id="confirm-view">
   <div class="app-header">
-    <div style="width:32px;"></div>
-    <span class="header-title">☕ Kopitiam</span>
-    <div style="width:32px;"></div>
+    <div style="width:28px;"></div>
+    <span class="header-title">☕ 23T Kopitiam</span>
+    <div style="width:28px;"></div>
   </div>
   <div class="confirm-content">
     <span class="confirm-emoji">🎉</span>
@@ -339,6 +339,10 @@ function showSplash(){
 }
 function showOrderApp(){
   hide('splash'); show('order-app','flex'); hide('order-view'); hide('confirm-view');
+}
+function goToCategory(tab){
+  showOrderApp();
+  switchTab(tab);
 }
 function showOrderView(){
   if(!S.order.length) return;
@@ -436,14 +440,14 @@ function buildName(item){
   if(item.id==='others') return document.getElementById('others-input').value.trim();
   let parts=[item.name];
   if(!isDrink){
-    parts.push(S.cup==='big'?'Big Cup':'Small Cup');
+    const ml={'siu-dai':'Siu Dai','gah-dai':'Gah Dai','kosong':'Kosong'};
+    S.mods.forEach(m=>{if(ml[m])parts.push(ml[m]);});
   }
   if(S.ice==='hot') parts.push('Hot 热');
   else if(S.ice==='bua-siow') parts.push('Bua Siow 半热');
   else parts.push('Peng 冰');
   if(!isDrink){
-    const ml={'siu-dai':'Siu Dai','gah-dai':'Gah Dai','kosong':'Kosong'};
-    S.mods.forEach(m=>{if(ml[m])parts.push(ml[m]);});
+    parts.push(S.cup==='big'?'Big Cup':'Small Cup');
   }
   return parts.join(' · ');
 }
